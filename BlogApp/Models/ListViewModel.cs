@@ -1,5 +1,6 @@
 ﻿using BlogApp.Data.Entities;
 using BlogApp.Repo;
+using BlogApp.Repo.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +10,22 @@ namespace BlogApp.Models
 {
     public class ListViewModel
     {
-        public ListViewModel()
+        public ListViewModel(IRepositoryWrapper repositoryWrapper, int p)
         {
-
+            Posts = repositoryWrapper.Post.Posts(p - 1, 10);
+            TotalPosts = repositoryWrapper.Post.TotalPosts();
         }
 
-        public ListViewModel(IBlogRepository _blogRepository, int p)
+        public ListViewModel(IRepositoryWrapper repositoryWrapper, string categorySlug, int p)
         {
-            Posts = _blogRepository.Posts(p - 1, 10);
-            TotalPosts = _blogRepository.TotalPosts();
+            Posts = repositoryWrapper.Post.PostsForCategory(categorySlug, p - 1, 10);
+            TotalPosts = repositoryWrapper.Post.TotalPostsForCategory(categorySlug);
+            Category = repositoryWrapper.Category.Category(categorySlug);
         }
 
         public ICollection<Post> Posts { get; private set; }
-
         public int TotalPosts { get; private set; }
+        public Category Category { get; private set;}
 
     }
 }

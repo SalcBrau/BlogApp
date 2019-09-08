@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using BlogApp.Data;
 using BlogApp.Repo;
+using BlogApp.Repo.Implementations;
+using BlogApp.Repo.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -41,7 +43,7 @@ namespace BlogApp
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
 
-            services.AddScoped<IBlogRepository, BlogRepository>();
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,8 +67,14 @@ namespace BlogApp
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "category",
+                    template: "Category/{category}",
+                    defaults: new { controller = "Blog", action = "Category" }
+                );
+
+                routes.MapRoute(
                     name: "default",
-                    template: "{controller=Blog}/{action=Posts}/{id?}"
+                    template: "{controller=Home}/{action=Index}/{id?}"
                 );
             });
         }
