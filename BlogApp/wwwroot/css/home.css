@@ -1,0 +1,55 @@
+﻿img {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.title {
+    font-size: 1.7em;
+}
+
+.content {
+    font-size: 1em;
+    width: 85%;
+    margin: auto;
+}
+
+@media (min-width: 430px) {
+    .title {
+        font-size: 2.5em;
+    }
+
+    .content {
+        font-size: 1.2em;
+    }
+}
+
+@media (min-width: 576px) {
+    .title {
+        font-size: 3em;
+    }
+
+    .content {
+        font-size: 1.3em;
+    }
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 3.5em;
+    }
+
+    .content {
+        font-size: 1.4em;
+    }
+}
+
+@media (min-width: 992px) {
+    .title {
+        font-size: 4.5em;
+    }
+
+    .content {
+        font-size: 1.4em;
+    }
+}
+
