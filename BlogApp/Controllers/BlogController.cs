@@ -4,17 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using BlogApp.Models;
 using BlogApp.Repo;
+using BlogApp.Repo.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Web;
+using BlogApp.Extensions;
 
 namespace BlogApp.Controllers
 {
     public class BlogController : Controller
     {
-        private readonly IBlogRepository _blogRepository;
+        private readonly IRepositoryWrapper _repositoryWrapper;
 
-        public BlogController(IBlogRepository blogRepository)
+        public BlogController(IRepositoryWrapper repositoryWrapper)
         {
-            _blogRepository = blogRepository;
+            _repositoryWrapper = repositoryWrapper;
         }
 
         public IActionResult Index()
@@ -25,8 +28,19 @@ namespace BlogApp.Controllers
         [HttpGet]
         public ViewResult Posts([FromQuery(Name = "p")] int p = 1)
         {
-            var viewModel = new ListViewModel(_blogRepository, p);
+            var viewModel = new ListViewModel(_repositoryWrapper, p);
             ViewBag.Title = "Latest Posts";
+
+            return View("List", viewModel);
+        }
+
+        public ViewResult Category(string category, int p = 1)
+        {
+            var viewModel = new ListViewModel(_repositoryWrapper, category, p);
+
+            if (viewModel.Category == null) throw new HttpException(404, "Category not found.");
+
+            ViewBag.Title = String.Format(@"Latest posts on category ""{0}""", viewModel.Category.Name);
 
             return View("List", viewModel);
         }
