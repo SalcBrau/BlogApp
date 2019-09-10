@@ -9,5 +9,6 @@ namespace BlogApp.Repo.Interfaces
     {
         IPostRepository Post { get; }
         ICategoryRepository Category { get; }
+        ITagRepository Tag { get; }
     }
 }

@@ -12,6 +12,7 @@ namespace BlogApp.Repo.Implementations
         private ApplicationDbContext _context;
         private IPostRepository _post;
         private ICategoryRepository _category;
+        private ITagRepository _tag;
 
         public RepositoryWrapper(ApplicationDbContext context)
         {
@@ -41,6 +42,18 @@ namespace BlogApp.Repo.Implementations
                 }
 
                 return _category;
+            }
+        }
+
+        public ITagRepository Tag
+        {
+            get
+            {
+                if (_tag == null)
+                {
+                    _tag = new TagRepository(_context);
+                }
+                return _tag;
             }
         }
     }
