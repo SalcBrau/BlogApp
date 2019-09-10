@@ -39,6 +39,7 @@ namespace BlogApp.Repo
                                       .Take(pageSize)
                                       .Include(p => p.Category)
                                       .Include(p => p.PostTags)
+                                      .ThenInclude(pt => pt.Tag)
                                       .ToList();
         }
 
@@ -57,6 +58,7 @@ namespace BlogApp.Repo
                                  .Take(pageSize)
                                  .Include(p => p.Category)
                                  .Include(p => p.PostTags)
+                                 .ThenInclude(pt => pt.Tag)
                                  .ToList();
         }
 
