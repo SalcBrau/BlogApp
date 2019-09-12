@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BlogApp.Repo
 {
-    public class PostRepository : RepositoryBase<Post>, IPostRepository 
+    public class PostRepository : RepositoryBase<Post>, IPostRepository
     {
         public PostRepository(ApplicationDbContext context) : base(context) { }
 
@@ -66,6 +66,24 @@ namespace BlogApp.Repo
         {
             int tagId = _context.Tags.Where(t => t.UrlSlug == tagSlug).Select(t => t.Id).FirstOrDefault();
             return _context.Posts.Where(p => p.Published && p.PostTags.Any(t => t.TagId == tagId))
+                                 .Count();
+        }
+
+        public ICollection<Post> PostsForSearch(string search, int pageNo, int pageSize)
+        {
+            return _context.Posts.Where(p => p.Published && (p.Title.Contains(search) || p.Category.Name.Equals(search) || p.PostTags.Any(pt => pt.Tag.Name.Equals(search))))
+                                      .OrderByDescending(p => p.PostedOn)
+                                      .Skip(pageNo * pageSize)
+                                      .Take(pageSize)
+                                      .Include(p => p.Category)
+                                      .Include(p => p.PostTags)
+                                      .ThenInclude(pt => pt.Tag)
+                                      .ToList();
+        }
+
+        public int TotalPostsForSearch(string search)
+        {
+            return _context.Posts.Where(p => p.Published && (p.Title.Contains(search) || p.Category.Equals(search) || p.PostTags.Any(pt => pt.Tag.Name.Equals(search))))
                                  .Count();
         }
     }

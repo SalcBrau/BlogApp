@@ -14,5 +14,8 @@ namespace BlogApp.Repo.Interfaces
         int TotalPostsForCategory(string categorySlug);
         ICollection<Post> PostsForTag(string tagSlug, int pageNo, int pageSize);
         int TotalPostsForTag(string tagSlug);
+        ICollection<Post> PostsForSearch(string search, int pageNo, int pageSize);
+        int TotalPostsForSearch(string search);
+
     }
 }
