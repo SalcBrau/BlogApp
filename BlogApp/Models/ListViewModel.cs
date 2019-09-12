@@ -25,6 +25,11 @@ namespace BlogApp.Models
                     TotalPosts = repositoryWrapper.Post.TotalPostsForCategory(text);
                     Category = repositoryWrapper.Category.Category(text);
                     break;
+                case "Search":
+                    Posts = repositoryWrapper.Post.PostsForSearch(text, p - 1, 10);
+                    TotalPosts = repositoryWrapper.Post.TotalPostsForSearch(text);
+                    Search = text;
+                    break;
                 default:
                     Posts = repositoryWrapper.Post.PostsForTag(text, p - 1, 10);
                     TotalPosts = repositoryWrapper.Post.TotalPostsForTag(text);
@@ -37,6 +42,7 @@ namespace BlogApp.Models
         public int TotalPosts { get; private set; }
         public Category Category { get; private set;}
         public Tag Tag { get; private set; }
+        public string Search { get; private set; }
 
     }
 }
