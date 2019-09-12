@@ -67,11 +67,15 @@ namespace BlogApp
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                  name: "tag",
+                  template: "Tag/{tag}",
+                  defaults: new { controller = "Blog", action = "Tag" }
+                );
+                routes.MapRoute(
                     name: "category",
                     template: "Category/{category}",
                     defaults: new { controller = "Blog", action = "Category" }
                 );
-
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}"
