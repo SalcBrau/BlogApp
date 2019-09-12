@@ -46,6 +46,7 @@
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
+            @await Html.PartialAsync("_Search")
             @RenderBody()
         </main>
     </div>
@@ -75,7 +76,7 @@
         </script>
     </environment>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
+    <script src="@Url.Content('~/wwwroot/js/app.js')"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
