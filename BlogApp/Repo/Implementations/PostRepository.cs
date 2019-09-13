@@ -86,5 +86,14 @@ namespace BlogApp.Repo
             return _context.Posts.Where(p => p.Published && (p.Title.Contains(search) || p.Category.Equals(search) || p.PostTags.Any(pt => pt.Tag.Name.Equals(search))))
                                  .Count();
         }
+
+        public Post Post(int year, int month, string titleSlug)
+        {
+            return _context.Posts.Where(p => p.PostedOn.Year == year && p.PostedOn.Month == month && p.UrlSlug.Equals(titleSlug))
+                                 .Include(p => p.Category)
+                                 .Include(p => p.PostTags)
+                                 .ThenInclude(pt => pt.Tag)
+                                 .SingleOrDefault();
+        }
     }
 }

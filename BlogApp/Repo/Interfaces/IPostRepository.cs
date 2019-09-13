@@ -16,6 +16,6 @@ namespace BlogApp.Repo.Interfaces
         int TotalPostsForTag(string tagSlug);
         ICollection<Post> PostsForSearch(string search, int pageNo, int pageSize);
         int TotalPostsForSearch(string search);
-
+        Post Post(int year, int month, string titleSlug);
     }
 }
