@@ -67,6 +67,11 @@ namespace BlogApp
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "post",
+                    template: "Archive/{year}/{month}/{title}",
+                    defaults: new { controller = "Blog", action = "Post"}
+                );
+                routes.MapRoute(
                   name: "tag",
                   template: "Tag/{tag}",
                   defaults: new { controller = "Blog", action = "Tag" }
