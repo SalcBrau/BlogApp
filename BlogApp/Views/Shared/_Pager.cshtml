@@ -18,7 +18,7 @@
 
     if (ViewContext.RouteData.Values["action"].ToString().Equals("search", StringComparison.OrdinalIgnoreCase))
     {
-        var s = String.Format("?s={0}", ViewContext.HttpContext.Items["s"].ToString());
+        var s = String.Format("?s={0}", ViewContext.HttpContext.Request.Query["s"]);
         p = String.Format("{0}&{1}", s, p);
         n = String.Format("{0}&{1}", s, p);
     }
