@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace BlogApp.Repo.Interfaces
+namespace Data.Repo.Interfaces
 {
     public interface IRepositoryBase<T>
     {

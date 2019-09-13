@@ -1,6 +1,6 @@
-﻿using BlogApp.Data.Entities;
-using BlogApp.Repo;
-using BlogApp.Repo.Interfaces;
+﻿using Data.Entities;
+using Data.Repo;
+using Data.Repo.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

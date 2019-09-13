@@ -1,11 +1,11 @@
-﻿using BlogApp.Data;
-using BlogApp.Repo.Interfaces;
+﻿using Data;
+using Data.Repo.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BlogApp.Repo.Implementations
+namespace Data.Repo.Implementations
 {
     public class RepositoryWrapper: IRepositoryWrapper
     {
