@@ -48,6 +48,7 @@
         <main role="main" class="pb-3">
             @await Html.PartialAsync("_Search")
             @RenderBody()
+            @await Component.InvokeAsync("Sidebars")
         </main>
     </div>
 
