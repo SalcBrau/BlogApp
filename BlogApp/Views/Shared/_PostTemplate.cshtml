@@ -13,15 +13,7 @@
             </div>
             <div class="post-tags">
                 <span>Tags: </span>
-                @{ 
-                    foreach (var postTag in Model.PostTags)
-                    {
-                        var tag = postTag.Tag;
-                        <div class="tags-div">
-                            @Html.TagLink(tag)
-                        </div>
-                    }
-                 }
+                @await Component.InvokeAsync("Tags", Model) 
             </div>
             <div class="posted-date">
                 @Model.PostedOn
