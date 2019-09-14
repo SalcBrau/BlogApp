@@ -16,5 +16,10 @@ namespace Data.Repo.Implementations
         {
             return _context.Tags.FirstOrDefault(t => t.UrlSlug.Equals(tagSlug));
         }
+
+        public ICollection<Tag> Tags()
+        {
+            return _context.Tags.OrderBy(p => p.Name).ToList();
+        }
     }
 }

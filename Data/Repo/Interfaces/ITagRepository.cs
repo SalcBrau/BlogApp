@@ -9,5 +9,7 @@ namespace Data.Repo.Interfaces
     public interface ITagRepository: IRepositoryBase<Tag>
     {
         Tag Tag(string tagSlug);
+
+        ICollection<Tag> Tags();
     }
 }
