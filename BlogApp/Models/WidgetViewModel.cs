@@ -12,8 +12,12 @@ namespace BlogApp.Models
         public WidgetViewModel(IRepositoryWrapper repositoryWrapper)
         {
             Categories = repositoryWrapper.Category.Categories();
+            Tags = repositoryWrapper.Tag.Tags();
+            LatestPosts = repositoryWrapper.Post.Posts(0, 10);
         }
 
         public ICollection<Category> Categories { get; private set; }
+        public ICollection<Tag> Tags { get; private set; }
+        public ICollection<Post> LatestPosts { get; private set; }
     }
 }
